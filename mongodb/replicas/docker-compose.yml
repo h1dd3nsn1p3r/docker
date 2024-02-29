@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  mongodb1:
+    image: mongo:latest
+    container_name: mongodb1
+    command: mongod --replSet rs0 --bind_ip 0.0.0.0 --auth --keyFile /etc/mongo/replica.key
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ADMIN_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ADMIN_PASSWORD}
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/db1:/data/db
+      - ./replica.key:/etc/mongo/replica.key
+    networks:
+      - supportify_network
+
+  mongodb2:
+    image: mongo:latest
+    container_name: mongodb2
+    command: mongod --replSet rs0 --bind_ip 0.0.0.0 --auth --keyFile /etc/mongo/replica.key
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ADMIN_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ADMIN_PASSWORD}
+    ports:
+      - 27018:27017
+    volumes:
+      - ./data/db2:/data/db
+      - ./replica.key:/etc/mongo/replica.key
+    networks:
+      - supportify_network
+
+  mongodb3:
+    image: mongo:latest
+    container_name: mongodb3
+    command: mongod --replSet rs0 --bind_ip 0.0.0.0 --auth --keyFile /etc/mongo/replica.key
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ADMIN_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ADMIN_PASSWORD}
+    ports:
+      - 27019:27017
+    volumes:
+      - ./data/db3:/data/db
+      - ./replica.key:/etc/mongo/replica.key
+    networks:
+      - supportify_network
+
+networks:
+  supportify_network:
+    driver: bridge

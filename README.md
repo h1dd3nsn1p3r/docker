@@ -1,3 +1,3 @@
 # Docker Collection
 
-🐬 Collection of Docker Files & docker-compose files for various projects.
+🐬 Collection of docker files and compose boilerplate.
