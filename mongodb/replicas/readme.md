@@ -95,6 +95,33 @@ Now we can quit the shell.
 quit()
 ```
 
+## Re-config the replica set
+
+If we restart the containers, the replica set will be lost. To re-config the replica set, we need to run the following commands.
+
+```sh
+docker exec -it mongodb1 /bin/bash
+```
+
+Then run the following commands.
+
+```sh
+mongosh -u <username> -p <password> --authenticationDatabase admin
+```
+
+```sh
+use admin
+
+rs.initiate({
+	_id: "rs0",
+	members: [
+		{ _id: 0, host: "mongodb1:27017" },
+		{ _id: 1, host: "mongodb2:27017" },
+		{ _id: 2, host: "mongodb3:27017" }
+	]
+})
+```
+
 ## Connection string.
 
 Let's test the connection using MongoDB Compass.
