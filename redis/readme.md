@@ -1,15 +1,18 @@
 # Redis
 
-Deploy redis using docker compose file.
+Deploy redis using docker compose file. Refer to the [docker-compose.yml](./docker-compose.yml) file.
 
-Keep in mind the `REDIS_PASSWORD` is a secret and should be stored in a `.env` file.
+Note: Keep in mind the `REDIS_PASSWORD` is a secret and should be stored in a `.env` file.
 
 ## Create a new redis user with ACL admin.
 
 Access the container using docker exec command. 
 
 ```sh
-docker exec -it cmpa-redis redis-cli -a ${REDIS_PASSWORD}
+docker exec -it cmpa-redis redis-cli -a <redis-password>
+```
+
+`-a` flag is used to pass the password to the redis-cli.
 ```
 
 `-a` flag is used to pass the password to the redis-cli.
