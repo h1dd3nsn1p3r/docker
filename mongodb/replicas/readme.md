@@ -76,7 +76,7 @@ Let's create a user for the database.
 ```sh
 use <database>
 ```
-
+ 
 Then let's create a user for the database.
 
 ```js

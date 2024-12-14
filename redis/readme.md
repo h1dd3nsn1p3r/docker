@@ -17,7 +17,14 @@ Here, `-a` flag is used to pass the password to the redis-cli.
 Once you are inside the redis container, you can create a new users by running the following command.
 
 ```sh
-acl setuser joedeo on >EasyP4sswd +@all -@dangerous ~*
+# Set ACL for the user.
+ACL SETUSER joedeo on >EasyP4sswd ~* +@all +@admin
+
+# Allow INFO command.
+ACL SETUSER joedeo on >EasyP4sswd ~* +@all -@admin +@info
+
+# Save the configuration.
+ACL SAVE
 ```
 
 Hence, you have created a new user with the name `joedeo` and password `EasyP4sswd`.
